@@ -21,12 +21,14 @@ function createWindow() {
     }
   })
 
-  mainWindow.loadFile('dist/atp-ref-grabber/index.html')
-
   mainWindow.on('closed', function () {
     mainWindow = null
   })
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  if (app.isPackaged) {
+    mainWindow.loadFile('dist/atp-ref-grabber/index.html')
+  } else {
+    mainWindow.loadURL('http://localhost:4200/')
+    mainWindow.webContents.openDevTools()
+  }
 }
