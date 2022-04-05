@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RefTableComponent } from './ref-table.component';
+import { RefListsComponent } from './ref-lists.component';
 
 describe('RefTableComponent', () => {
-  let component: RefTableComponent;
-  let fixture: ComponentFixture<RefTableComponent>;
+  let component: RefListsComponent;
+  let fixture: ComponentFixture<RefListsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RefTableComponent ]
+      declarations: [RefListsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RefTableComponent);
+    fixture = TestBed.createComponent(RefListsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

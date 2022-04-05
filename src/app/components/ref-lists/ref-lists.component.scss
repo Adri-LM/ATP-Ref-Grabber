@@ -1,0 +1,29 @@
+.list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .reference-list {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    max-height: 350px;
+    overflow-y: auto;
+    margin: 5px;
+  }
+
+  .list-header {
+    display: block;
+    width: 300px;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.custom-scroll-bar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scroll-bar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, .26);
+}

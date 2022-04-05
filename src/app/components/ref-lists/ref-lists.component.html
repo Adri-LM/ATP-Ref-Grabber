@@ -1,0 +1,6 @@
+<div class="list-container">
+  <mat-list class="reference-list custom-scroll-bar" *ngFor="let entry of data | keyvalue">
+    <div class="list-header" mat-subheader>{{ entry.key }}</div>
+    <mat-list-item *ngFor="let reference of $any(entry.value)">{{ reference }}</mat-list-item>
+  </mat-list>
+</div>

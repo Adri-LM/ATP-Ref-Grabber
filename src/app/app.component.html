@@ -1,16 +1,14 @@
 <div class="container">
 
   <mat-toolbar color="primary">
-    <span>ATP Ref Grabber</span>
+    <span>{{ title }}</span>
   </mat-toolbar>
 
   <div class="content">
-    <div class="info_label">
-      Send a request by using the Run button below.
-      <br>
-      You can configure your data in Settings.
-    </div>
+    <div class="info_label">{{ infoLabel }}</div>
 
-    <app-ref-table></app-ref-table>
+    <app-ref-lists [data]="data"></app-ref-lists>
+
+    <button mat-button (click)="sendRequest()">Run</button>
   </div>
 </div>

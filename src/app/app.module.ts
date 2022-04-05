@@ -1,24 +1,28 @@
+import { CommonModule } from "@angular/common";
 import { NgModule } from '@angular/core';
+import { MatButtonModule } from "@angular/material/button";
+import { MatListModule } from "@angular/material/list";
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { RefTableComponent } from './components/ref-table/ref-table.component';
-import { ResizableModule } from "./resizable/resizable.module";
+import { RefListsComponent } from './components/ref-lists/ref-lists.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RefTableComponent
+    RefListsComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    CommonModule,
+    MatButtonModule,
+    MatListModule,
     MatTableModule,
-    MatToolbarModule,
-    ResizableModule
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
