@@ -9,4 +9,18 @@ export class RefListsComponent {
 
   @Input()
   data: any;
+
+  @Input()
+  serviceLevelKeysMap: any;
+
+  prettyServiceLevelKeys(serviceLevelKeys: any) {
+    let result = serviceLevelKeys;
+
+    Object.entries(this.serviceLevelKeysMap)
+      .forEach(([k, v]: any) => {
+        result = result.replaceAll(k, v);
+      });
+
+    return result;
+  }
 }

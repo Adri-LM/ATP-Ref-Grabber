@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResponseModel } from "./models/response-model";
 import { ApiService } from "./services/api.service";
+import { ConfigService } from "./services/config.service";
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,8 @@ export class AppComponent implements OnInit {
   data: any;
   infoLabel: string = "";
 
-  constructor(private apiService: ApiService) {}
+  constructor(public configService: ConfigService,
+              private apiService: ApiService) {}
 
   ngOnInit() {
     this.infoLabel = this.labelMessages.empty;

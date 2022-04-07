@@ -7,7 +7,7 @@
   <div class="content">
     <div class="info_label">{{ infoLabel }}</div>
 
-    <app-ref-lists [data]="data"></app-ref-lists>
+    <app-ref-lists [data]="data" [serviceLevelKeysMap]="configService.getServiceLevelKeysMap()"></app-ref-lists>
 
     <button mat-button (click)="sendRequest()">Run</button>
   </div>
