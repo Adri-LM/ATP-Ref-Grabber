@@ -13,6 +13,8 @@
 
     <app-ref-lists [data]="data" [serviceLevelKeysMap]="configService.getServiceLevelKeysMap()"></app-ref-lists>
 
-    <button mat-button (click)="sendRequest()">Run</button>
+    <button mat-fab class="send-button" color="primary" (click)="sendRequest()">
+      <mat-icon>send</mat-icon>
+    </button>
   </div>
 </div>

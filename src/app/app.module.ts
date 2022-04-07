@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
 import { MatListModule } from "@angular/material/list";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
@@ -24,6 +25,7 @@ import { RefListsComponent } from './components/ref-lists/ref-lists.component';
     CommonModule,
     FormsModule,
     MatButtonModule,
+    MatIconModule,
     MatListModule,
     MatProgressBarModule,
     MatSlideToggleModule,
