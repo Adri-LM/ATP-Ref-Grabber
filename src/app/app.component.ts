@@ -13,12 +13,13 @@ export class AppComponent implements OnInit {
 
   labelMessages = {
     empty: 'Send a request by using the Run button below.\nYou can configure your data in Settings.',
-    request_send: 'BU: %s (%s) | Store: %s (%s) | Address: %s - %s',
     unresolvable_addr: 'Unable to resolve address, check your internet connection or VPN.'
   };
 
   data: any;
   infoLabel: string = "";
+  useMock: boolean = true;
+  isLoading: boolean = false;
 
   constructor(public configService: ConfigService,
               private apiService: ApiService) {}
@@ -28,14 +29,28 @@ export class AppComponent implements OnInit {
   }
 
   sendRequest() {
-    this.apiService.mockDeliveryModeRequest()
+    (this.useMock ? this.mockDeliveryModeRequest() : this.sendDeliveryModeRequest())
       .then(this.processResult)
       .then((groups: any) => this.data = groups)
-      .catch((error: { message: string; }) => this.handleError(error.message));
+      .catch((error: { message: string; }) => this.handleError(error.message))
+      .finally(() => this.isLoading = false);
   }
 
-  processResult(response: ResponseModel) {
-    const dsResponse = response.data;
+  mockDeliveryModeRequest() {
+    this.infoLabel = `⚠ Mocked result`
+    return this.apiService.mockDeliveryModeRequest();
+  }
+
+  sendDeliveryModeRequest() {
+    const config = this.configService.getRequestConfig();
+    this.infoLabel = `BU: ${config.bu} (${config.buCode}) | Store: ${config.store.id} (${config.channel})` +
+      ` | Address: ${config.address.postalCode} - ${config.address.countryCode}`
+    this.isLoading = true;
+
+    return this.apiService.sendDeliveryModeRequest(config);
+  }
+
+  processResult(dsResponse: ResponseModel) {
     const groups: any = {};
 
     dsResponse.deliverySimulations.forEach(s => {
@@ -58,7 +73,7 @@ export class AppComponent implements OnInit {
   }
 
   handleError(errorMsg: string) {
-    this.infoLabel = errorMsg.includes("getaddrinfo ENOTFOUND")
+    this.infoLabel = errorMsg.includes("connect ETIMEDOUT")
       ? this.labelMessages.unresolvable_addr
       : errorMsg;
   }

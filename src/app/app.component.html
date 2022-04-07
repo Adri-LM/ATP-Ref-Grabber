@@ -3,9 +3,13 @@
   <mat-toolbar color="primary">
     <span>{{ title }}</span>
   </mat-toolbar>
+  <mat-progress-bar *ngIf="isLoading" color="accent" mode="indeterminate"></mat-progress-bar>
 
   <div class="content">
-    <div class="info_label">{{ infoLabel }}</div>
+    <div class="top-content">
+      <mat-slide-toggle [(ngModel)]="useMock">Use mock</mat-slide-toggle>
+      <div class="info_label">{{ infoLabel }}</div>
+    </div>
 
     <app-ref-lists [data]="data" [serviceLevelKeysMap]="configService.getServiceLevelKeysMap()"></app-ref-lists>
 

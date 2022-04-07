@@ -1,4 +1,5 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
+const axios = require("axios");
 
 let mainWindow;
 
@@ -17,7 +18,8 @@ function createWindow() {
     width: 1000,
     height: 800,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      contextIsolation: false
     }
   })
 
@@ -32,3 +34,16 @@ function createWindow() {
     mainWindow.webContents.openDevTools()
   }
 }
+
+ipcMain.handle("sendDeliveryModeRequest", async (event, ...args) => {
+  const config = args[0];
+
+  return (await axios.post(`${process.env.DS_BASE_URL}/available-to-promises`, config.body, {
+      headers: {
+        'x-bu-code': config.bu,
+        'Adeo-Bu-Code': config.buCode,
+        'X-Gateway-APIKey': process.env.DS_API_KEY
+      }
+    })
+  )?.data;
+});
