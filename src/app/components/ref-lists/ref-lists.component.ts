@@ -13,6 +13,9 @@ export class RefListsComponent {
   @Input()
   serviceLevelKeysMap: any;
 
+  @Input()
+  useListMode: boolean = false;
+
   prettyServiceLevelKeys(serviceLevelKeys: any) {
     let result = serviceLevelKeys;
 

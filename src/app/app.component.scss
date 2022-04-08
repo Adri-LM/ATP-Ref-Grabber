@@ -2,8 +2,10 @@
   padding: 0 15px;
 
   .top-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 10px;
-    text-align: center;
 
     & > * {
       margin: 5px 0;

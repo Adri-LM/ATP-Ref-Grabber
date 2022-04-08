@@ -8,10 +8,11 @@
   <div class="content">
     <div class="top-content">
       <mat-slide-toggle [(ngModel)]="useMock">Use mock</mat-slide-toggle>
+      <mat-slide-toggle [(ngModel)]="useListMode">View Mode: {{ useListMode ? 'List' : 'Accordion' }}</mat-slide-toggle>
       <div class="info_label">{{ infoLabel }}</div>
     </div>
 
-    <app-ref-lists [data]="data" [serviceLevelKeysMap]="configService.getServiceLevelKeysMap()"></app-ref-lists>
+    <app-ref-lists [data]="data" [serviceLevelKeysMap]="configService.getServiceLevelKeysMap()" [useListMode]="useListMode"></app-ref-lists>
 
     <button mat-fab class="send-button" color="primary" (click)="sendRequest()">
       <mat-icon>send</mat-icon>

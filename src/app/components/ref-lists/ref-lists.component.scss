@@ -18,6 +18,11 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+
+  .list-item {
+    font-size: 14px;
+    height: 32px;
+  }
 }
 
 .custom-scroll-bar::-webkit-scrollbar {
@@ -26,4 +31,9 @@
 
 .custom-scroll-bar::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, .26);
+}
+
+mat-panel-title,
+mat-panel-description {
+  flex: 1;
 }

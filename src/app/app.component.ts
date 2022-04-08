@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   data: any;
   infoLabel: string = "";
   useMock: boolean = true;
+  useListMode: boolean = false;
   isLoading: boolean = false;
 
   constructor(public configService: ConfigService,
