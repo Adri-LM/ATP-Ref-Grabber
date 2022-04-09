@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const Store = require("electron-store");
 const axios = require("axios");
+const path = require("path");
 
 let mainWindow;
 
@@ -19,6 +20,7 @@ app.on('activate', () => {
 function createWindow() {
   mainWindow = new BrowserWindow({
     title: "ATP Ref Grabber",
+    icon: path.join(__dirname, 'src/assets/icon.png'),
     width: 1000,
     height: 800,
     webPreferences: {

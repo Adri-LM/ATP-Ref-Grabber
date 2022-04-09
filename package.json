@@ -7,7 +7,7 @@
   "scripts": {
     "start": "npm run ng:build && electron-forge start",
     "serve": "npm-run-all -p electron:start ng:serve",
-    "make": "npm run ng:build -- --configuration=production && electron-forge make",
+    "make": "npm run ng:build -- --configuration=production && electron-forge make && start ./out/atp-ref-grabber-win32-x64/atp-ref-grabber.exe",
     "electron:start": "electron .",
     "ng:serve": "ng serve",
     "ng:build": "ng build --base-href ."
@@ -55,7 +55,9 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "./src/assets/icon"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
