@@ -24,6 +24,7 @@ import { RefAccordionComponent } from './components/ref-accordion/ref-accordion.
 import { RefListsComponent } from './components/ref-lists/ref-lists.component';
 import { SettingsDialogComponent } from './components/settings-dialog/settings-dialog.component';
 import { TableEditDialogComponent } from './components/table-edit-dialog/table-edit-dialog.component';
+import { TextToggleSwitchComponent } from './components/text-toggle-switch/text-toggle-switch.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TableEditDialogComponent } from './components/table-edit-dialog/table-e
     RefAccordionComponent,
     RefListsComponent,
     SettingsDialogComponent,
-    TableEditDialogComponent
+    TableEditDialogComponent,
+    TextToggleSwitchComponent
   ],
   imports: [
     BrowserModule,
