@@ -13,6 +13,22 @@ export class SettingsDialogComponent {
   dataSource: any;
   settingsFormGroup: FormGroup;
   displayedColumns: string[] = ['key', 'label'];
+  presets: any = {
+    FR: {
+      bu: 'LMFR',
+      channel: 'WEB',
+      countryCode: 'FR',
+      postalCode: '47000',
+      store: '176'
+    },
+    IT: {
+      bu: 'LMIT',
+      channel: 'WEB',
+      countryCode: 'IT',
+      postalCode: '20060',
+      store: '007'
+    }
+  }
 
   constructor(public dialogRef: MatDialogRef<SettingsDialogComponent>,
               private configService: ConfigService,
@@ -38,6 +54,20 @@ export class SettingsDialogComponent {
     return this.settingsFormGroup.value.references?.split("\n")
       .filter(Boolean)
       .length || 0;
+  }
+
+  setPreset(presetName: string) {
+    const preset = this.presets[presetName];
+
+    this.settingsFormGroup.setValue({
+      bu: preset.bu,
+      channel: preset.channel,
+      countryCode: preset.countryCode,
+      postalCode: preset.postalCode,
+      store: preset.store,
+      references: this.settingsFormGroup.get("references")?.value,
+      serviceLevelKeys: this.settingsFormGroup.get("serviceLevelKeys")?.value
+    });
   }
 
   saveSettings(): void {
