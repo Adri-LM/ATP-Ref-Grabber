@@ -20,12 +20,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { RefListsComponent } from './components/ref-lists/ref-lists.component';
 import { SettingsDialogComponent } from './components/settings-dialog/settings-dialog.component';
+import { TableEditDialogComponent } from './components/table-edit-dialog/table-edit-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RefListsComponent,
-    SettingsDialogComponent
+    SettingsDialogComponent,
+    TableEditDialogComponent
   ],
   imports: [
     BrowserModule,

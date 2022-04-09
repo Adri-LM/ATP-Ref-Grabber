@@ -64,7 +64,9 @@
 
         <ng-container matColumnDef="label">
           <th mat-header-cell *matHeaderCellDef>Label</th>
-          <td mat-cell *matCellDef="let element">{{ element.label }}</td>
+          <td mat-cell *matCellDef="let element" (click)="openEditDialog(element)">
+            <span class="label-cell-text">{{ element.label }}</span>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

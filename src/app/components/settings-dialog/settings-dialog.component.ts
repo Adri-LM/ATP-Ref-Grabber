@@ -1,7 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { ConfigService } from "../../services/config.service";
+import { clone } from "../../utils/utils";
+import { TableEditDialogComponent } from "../table-edit-dialog/table-edit-dialog.component";
 
 @Component({
   selector: 'app-settings-dialog',
@@ -32,21 +34,20 @@ export class SettingsDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<SettingsDialogComponent>,
               private configService: ConfigService,
+              private dialog: MatDialog,
               @Inject(MAT_DIALOG_DATA) public data: any) {
 
-    const settings = configService.getRequestConfig();
-    const serviceLevelKeys = configService.getServiceLevelKeys();
+    const settings = clone(configService.getRequestConfig());
     const staticLengthValidator = (l: number) => [Validators.required, Validators.minLength(l), Validators.maxLength(l)];
 
-    this.dataSource = serviceLevelKeys;
+    this.dataSource = clone(this.configService.getServiceLevelKeys());
     this.settingsFormGroup = new FormGroup({
       bu: new FormControl(settings.bu, staticLengthValidator(4)),
       channel: new FormControl(settings.channel, [Validators.required]),
       countryCode: new FormControl(settings.address?.countryCode, staticLengthValidator(2)),
       postalCode: new FormControl(settings.address?.postalCode, [Validators.required, Validators.pattern('[0-9]{5}')]),
       store: new FormControl(settings.store?.id, [Validators.required, Validators.pattern('[0-9]{1,3}')]),
-      references: new FormControl(settings.references?.join('\n'), [Validators.required]),
-      serviceLevelKeys: new FormControl(serviceLevelKeys)
+      references: new FormControl(settings.references?.join('\n'), [Validators.required])
     });
   }
 
@@ -65,21 +66,32 @@ export class SettingsDialogComponent {
       countryCode: preset.countryCode,
       postalCode: preset.postalCode,
       store: preset.store,
-      references: this.settingsFormGroup.get("references")?.value,
-      serviceLevelKeys: this.settingsFormGroup.get("serviceLevelKeys")?.value
+      references: this.settingsFormGroup.get("references")?.value
     });
+  }
+
+  openEditDialog(data: { key: string, label: string }) {
+    const dialog = this.dialog.open(TableEditDialogComponent, { data });
+
+    dialog.afterClosed()
+      .subscribe(result => {
+        if (!result || !result.key || !result.label) return;
+
+        this.dataSource
+          .find((sl: { key: string, label: string }) => sl.key === result.key)
+          .label = result.label;
+      })
   }
 
   saveSettings(): void {
     if (this.settingsFormGroup.invalid) return;
 
     const values = this.settingsFormGroup.value;
-
     const buCode = this.configService.getBuMap()
       .find(entry => entry.bu === values.bu)
       ?.buCode;
 
-    this.configService.saveRequestConfig({
+    const requestConfig = {
       bu: values.bu,
       buCode,
       channel: values.channel,
@@ -92,8 +104,9 @@ export class SettingsDialogComponent {
         countryCode: values.countryCode
       },
       references: values.references.split("\n")
-    });
+    };
 
+    this.configService.saveConfig(requestConfig, this.dataSource);
     this.dialogRef.close();
   }
 }

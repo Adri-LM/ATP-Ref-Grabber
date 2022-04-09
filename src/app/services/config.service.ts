@@ -97,9 +97,11 @@ export class ConfigService {
     return this.config;
   }
 
-  public saveRequestConfig(config: RequestConfig): void {
+  public saveConfig(config: RequestConfig, serviceLevelKeys: any[]): void {
     this.store.set(storeKeys.REQUEST_CONFIG, config);
+    this.store.set(storeKeys.SERVICE_LEVEL_KEYS, serviceLevelKeys);
     this.config = config;
+    this.serviceLevelKeys = serviceLevelKeys;
   }
 
   public getServiceLevelKeys() {
