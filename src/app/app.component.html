@@ -11,7 +11,9 @@
   <div class="content">
     <div class="top-content">
       <mat-slide-toggle [(ngModel)]="useMock">Use mock</mat-slide-toggle>
-      <mat-slide-toggle [(ngModel)]="useListMode">View Mode: {{ useListMode ? 'List' : 'Accordion' }}</mat-slide-toggle>
+      <mat-slide-toggle [(ngModel)]="useListMode" (ngModelChange)="viewModeChanged()">
+        View Mode: {{ useListMode ? 'List' : 'Accordion' }}
+      </mat-slide-toggle>
       <div class="info_label">{{ infoLabel }}</div>
     </div>
 

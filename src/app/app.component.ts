@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.infoLabel = this.labelMessages.empty;
+    this.useListMode = this.configService.getViewMode() === 'list';
   }
 
   sendRequest() {
@@ -38,6 +39,10 @@ export class AppComponent implements OnInit {
       .then((groups: any) => this.data = groups)
       .catch((error: { message: string; }) => this.handleError(error.message))
       .finally(() => this.isLoading = false);
+  }
+
+  viewModeChanged() {
+    this.configService.saveViewMode(this.useListMode ? 'list' : 'accordion');
   }
 
   mockDeliveryModeRequest() {

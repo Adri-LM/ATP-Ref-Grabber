@@ -5,10 +5,15 @@ const Store = window.require('electron-store');
 
 const storeKeys = {
   REQUEST_CONFIG: "requestConfig",
-  SERVICE_LEVEL_KEYS: "serviceLevelKeys"
+  SERVICE_LEVEL_KEYS: "serviceLevelKeys",
+  VIEW_MODE: "viewMode",
 }
 
 const storeSchema = {
+  viewMode: {
+    type: 'string',
+    default: 'accordion'
+  },
   requestConfig: {
     type: 'object',
     default: {},
@@ -78,9 +83,11 @@ const storeSchema = {
 export class ConfigService {
 
   private store: any;
-
-  private serviceLevelKeys: any[];
-  private config: RequestConfig;
+  private config: {
+    viewMode: string,
+    requestConfig: RequestConfig,
+    serviceLevelKeys: any[]
+  };
 
   private buMap = [
     { bu: "LMFR", buCode: "001" },
@@ -89,26 +96,38 @@ export class ConfigService {
 
   constructor() {
     this.store = new Store({ schema: storeSchema });
-    this.config = this.store.get(storeKeys.REQUEST_CONFIG);
-    this.serviceLevelKeys = this.store.get(storeKeys.SERVICE_LEVEL_KEYS);
+    this.config = {
+      viewMode: this.store.get(storeKeys.VIEW_MODE),
+      requestConfig: this.store.get(storeKeys.REQUEST_CONFIG),
+      serviceLevelKeys: this.store.get(storeKeys.SERVICE_LEVEL_KEYS)
+    }
   }
 
   public getRequestConfig(): RequestConfig {
-    return this.config;
+    return this.config.requestConfig;
   }
 
-  public saveConfig(config: RequestConfig, serviceLevelKeys: any[]): void {
-    this.store.set(storeKeys.REQUEST_CONFIG, config);
+  public saveConfig(requestConfig: RequestConfig, serviceLevelKeys: any[]): void {
+    this.store.set(storeKeys.REQUEST_CONFIG, requestConfig);
     this.store.set(storeKeys.SERVICE_LEVEL_KEYS, serviceLevelKeys);
-    this.config = config;
-    this.serviceLevelKeys = serviceLevelKeys;
+    this.config.requestConfig = requestConfig;
+    this.config.serviceLevelKeys = serviceLevelKeys;
+  }
+
+  public saveViewMode(viewMode: string): void {
+    this.store.set(storeKeys.VIEW_MODE, viewMode);
+    this.config.viewMode = viewMode;
   }
 
   public getServiceLevelKeys() {
-    return this.serviceLevelKeys;
+    return this.config.serviceLevelKeys;
   }
 
   public getBuMap(): any[] {
     return this.buMap;
+  }
+
+  public getViewMode(): string {
+    return this.config.viewMode;
   }
 }
