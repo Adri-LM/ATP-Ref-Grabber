@@ -1,6 +1,8 @@
 <div *ngIf="useListMode" class="list-container">
   <mat-list class="reference-list custom-scroll-bar" *ngFor="let entry of data | keyvalue">
-    <div class="list-header" mat-subheader>{{ prettyServiceLevelKey(entry.key) }}</div>
+    <div class="list-header" [matTooltip]="prettyServiceLevelKey(entry.key)" mat-subheader>
+      {{ prettyServiceLevelKey(entry.key) }}
+    </div>
     <mat-list-item class="list-item" *ngFor="let reference of $any(entry.value)">{{ reference }}</mat-list-item>
   </mat-list>
 </div>
