@@ -14,6 +14,9 @@ export class TextToggleSwitchComponent {
   offLabel: string;
 
   @Input()
+  bicolor: boolean = false;
+
+  @Input()
   set value(val: boolean) {
     this._value = val;
     this.valueChange.emit(this._value);

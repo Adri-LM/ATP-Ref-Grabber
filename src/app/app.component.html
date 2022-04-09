@@ -2,7 +2,9 @@
 
   <mat-toolbar color="primary">
     <span class="toolbar-title">{{ title }}</span>
-    <app-text-toggle-switch [(value)]="useMock" onLabel="MOCK" offLabel="ATP"></app-text-toggle-switch>
+    <app-text-toggle-switch [(value)]="useListMode" (valueChange)="viewModeChanged()"
+                            onLabel="Style 1" offLabel="Style 2"></app-text-toggle-switch>
+    <app-text-toggle-switch [(value)]="useMock" onLabel="Mock" offLabel="ATP" [bicolor]="true"></app-text-toggle-switch>
     <button (click)="openSettingsDialog()" mat-icon-button>
       <mat-icon>settings</mat-icon>
     </button>
@@ -11,9 +13,6 @@
 
   <div class="content">
     <div class="top-content">
-      <mat-slide-toggle [(ngModel)]="useListMode" (ngModelChange)="viewModeChanged()">
-        View Mode: {{ useListMode ? 'List' : 'Accordion' }}
-      </mat-slide-toggle>
       <div class="info_label">{{ infoLabel }}</div>
     </div>
 

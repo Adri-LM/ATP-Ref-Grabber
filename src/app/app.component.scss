@@ -12,14 +12,8 @@ app-text-toggle-switch {
   padding: 0 15px;
 
   .top-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-
-    & > * {
-      margin: 5px 0;
-    }
+    text-align: center;
+    padding: 15px;
   }
 }
 
