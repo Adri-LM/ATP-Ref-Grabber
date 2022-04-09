@@ -1,0 +1,27 @@
+<mat-accordion displayMode="flat" multi="false">
+  <mat-expansion-panel *ngFor="let entry of data | keyvalue">
+
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-chip-list class="sl-key-chip-list">
+          <mat-chip color="primary" class="sl-key-chip" *ngFor="let label of splitServiceLevelKeys($any(entry.key))">
+            {{ label }}
+          </mat-chip>
+        </mat-chip-list>
+      </mat-panel-title>
+
+      <mat-panel-description [ngPlural]="$any(entry.value).length">
+        {{ $any(entry.value).length }}
+        <ng-template ngPluralCase="=1">reference</ng-template>
+        <ng-template ngPluralCase="other">references</ng-template>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-list class="reference-list custom-scroll-bar">
+      <mat-list-item class="list-item" *ngFor="let reference of $any(entry.value)">
+        {{ reference }}
+      </mat-list-item>
+    </mat-list>
+
+  </mat-expansion-panel>
+</mat-accordion>

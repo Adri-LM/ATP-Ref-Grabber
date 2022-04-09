@@ -13,15 +13,6 @@ export class RefListsComponent {
   @Input()
   serviceLevelKeys: any[] = [];
 
-  @Input()
-  useListMode: boolean = false;
-
-  splitServiceLevelKeys(concatenatedServiceLevelKeys: string) {
-    return concatenatedServiceLevelKeys
-      .split(" + ")
-      .map(serviceLevelKey => this.prettyServiceLevelKey(serviceLevelKey));
-  }
-
   prettyServiceLevelKey(serviceLevelKey: any) {
     let result = serviceLevelKey;
 

@@ -15,7 +15,10 @@
       <div class="info_label">{{ infoLabel }}</div>
     </div>
 
-    <app-ref-lists [data]="data" [serviceLevelKeys]="configService.getServiceLevelKeys()" [useListMode]="useListMode"></app-ref-lists>
+    <app-ref-lists *ngIf="useListMode; else accordion" [data]="data" [serviceLevelKeys]="configService.getServiceLevelKeys()"></app-ref-lists>
+    <ng-template #accordion>
+      <app-ref-accordion [data]="data" [serviceLevelKeys]="configService.getServiceLevelKeys()"></app-ref-accordion>
+    </ng-template>
 
     <button mat-fab class="send-button" color="primary" (click)="sendRequest()">
       <mat-icon>send</mat-icon>

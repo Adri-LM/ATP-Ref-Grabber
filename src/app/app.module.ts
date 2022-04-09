@@ -20,6 +20,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
+import { RefAccordionComponent } from './components/ref-accordion/ref-accordion.component';
 import { RefListsComponent } from './components/ref-lists/ref-lists.component';
 import { SettingsDialogComponent } from './components/settings-dialog/settings-dialog.component';
 import { TableEditDialogComponent } from './components/table-edit-dialog/table-edit-dialog.component';
@@ -27,6 +28,7 @@ import { TableEditDialogComponent } from './components/table-edit-dialog/table-e
 @NgModule({
   declarations: [
     AppComponent,
+    RefAccordionComponent,
     RefListsComponent,
     SettingsDialogComponent,
     TableEditDialogComponent

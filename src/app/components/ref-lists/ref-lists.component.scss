@@ -32,13 +32,3 @@
 .custom-scroll-bar::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, .26);
 }
-
-mat-panel-title,
-mat-panel-description {
-  flex: 1;
-}
-
-.sl-key-chip {
-  font-size: 0.84rem;
-  user-select: none;
-}
