@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatChipsModule } from "@angular/material/chips";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -14,6 +15,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatTooltipModule } from "@angular/material/tooltip";
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -37,6 +39,7 @@ import { TableEditDialogComponent } from './components/table-edit-dialog/table-e
     ReactiveFormsModule,
     MatButtonModule,
     MatButtonToggleModule,
+    MatChipsModule,
     MatDialogModule,
     MatExpansionModule,
     MatFormFieldModule,
@@ -47,7 +50,8 @@ import { TableEditDialogComponent } from './components/table-edit-dialog/table-e
     MatSelectModule,
     MatSlideToggleModule,
     MatTableModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
