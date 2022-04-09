@@ -270,10 +270,10 @@ export const mockedResponse: ResponseModel = {
                 {
                     deliveryService: {
                         mode: "HOME_DELIVERY",
-                        level: "STD",
+                        level: "EXP",
                         deliverySlotManagementId: "NO_APPOINTMENT",
                         transportType: "D",
-                        customerDeliveryService: "001",
+                        customerDeliveryService: "002",
                         extraDeliveryServices: [],
                         shippingPoint: {
                             id: "201374",
