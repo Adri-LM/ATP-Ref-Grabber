@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from "@angular/material/dialog";
+import { SettingsDialogComponent } from "./components/settings-dialog/settings-dialog.component";
 import { ResponseModel } from "./models/response-model";
 import { ApiService } from "./services/api.service";
 import { ConfigService } from "./services/config.service";
@@ -23,7 +25,8 @@ export class AppComponent implements OnInit {
   isLoading: boolean = false;
 
   constructor(public configService: ConfigService,
-              private apiService: ApiService) {}
+              private apiService: ApiService,
+              private dialog: MatDialog) {}
 
   ngOnInit() {
     this.infoLabel = this.labelMessages.empty;
@@ -77,5 +80,9 @@ export class AppComponent implements OnInit {
     this.infoLabel = errorMsg.includes("connect ETIMEDOUT")
       ? this.labelMessages.unresolvable_addr
       : errorMsg;
+  }
+
+  openSettingsDialog() {
+    this.dialog.open(SettingsDialogComponent);
   }
 }

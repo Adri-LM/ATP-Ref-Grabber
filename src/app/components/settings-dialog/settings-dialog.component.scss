@@ -1,0 +1,35 @@
+.top-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.middle-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.bottom-container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.ref-input {
+  height: 100%;
+  overflow-y: auto;
+  max-height: 350px;
+
+  ::ng-deep .mat-form-field-wrapper {
+    padding: 0 !important;
+  }
+}
+
+.sl-keys-table {
+  flex: 1;
+  margin: 4px 7px;
+
+  th.mat-header-cell:last-of-type,
+  td.mat-cell:last-of-type,
+  td.mat-footer-cell:last-of-type {
+    padding-left: 24px;
+  }
+}

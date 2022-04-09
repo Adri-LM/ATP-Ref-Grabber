@@ -1,0 +1,72 @@
+<h2 mat-dialog-title>Settings</h2>
+<mat-dialog-content class="mat-typography">
+
+  <form [formGroup]="settingsFormGroup">
+
+      <!-- ##### BU / Channel ##### -->
+      <div class="top-container">
+        <mat-form-field appearance="outline">
+          <mat-label>BU</mat-label>
+          <mat-select formControlName="bu">
+            <mat-option value="LMFR">LMFR</mat-option>
+            <mat-option value="LMIT">LMIT</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Channel</mat-label>
+          <mat-select formControlName="channel">
+            <mat-option value="WEB">WEB</mat-option>
+            <mat-option value="STORE">STORE</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- ##### Address / Store ##### -->
+      <div class="middle-container">
+        <mat-form-field appearance="outline">
+          <mat-label>Country Code</mat-label>
+          <input matInput placeholder="Ex. FR" formControlName="countryCode">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Postal Code</mat-label>
+          <input matInput placeholder="Ex. 59260" formControlName="postalCode">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Store</mat-label>
+          <input matInput placeholder="Ex. 176" formControlName="store">
+        </mat-form-field>
+      </div>
+
+      <!-- ##### Refs / Service level Keys ##### -->
+      <div class="bottom-container">
+        <mat-form-field appearance="outline" class="ref-input">
+          <mat-label>References ({{ referenceCount() }})</mat-label>
+          <textarea matInput formControlName="references" cdkTextareaAutosize></textarea>
+        </mat-form-field>
+
+
+        <table class="sl-keys-table mat-elevation-z1" [dataSource]="dataSource" mat-table>
+          <ng-container matColumnDef="key">
+            <th mat-header-cell *matHeaderCellDef>Service Level Key</th>
+            <td mat-cell *matCellDef="let element">{{ element.key }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="label">
+            <th mat-header-cell *matHeaderCellDef>Label</th>
+            <td mat-cell *matCellDef="let element">{{ element.label }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="saveSettings()" color="primary">Save</button>
+  <button mat-button mat-dialog-close="" cdkFocusInitial>Cancel</button>
+</mat-dialog-actions>

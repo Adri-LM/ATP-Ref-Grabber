@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { RequestConfig } from "../models/request-config";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class ConfigService {
     {key: "RELAY_POINT_DELIVERY_STD_NO_APPOINTMENT", label: "Relay"}
   ];
 
-  private config: any = {
+  private config: RequestConfig = {
     bu: "LMFR",
     buCode: "001",
     channel: "WEB",
@@ -30,11 +31,24 @@ export class ConfigService {
       "31988803", "32063591", "32285393", "32452161", "32587870", "32836195", "33061280", "34115732", "34425384", "34578971", "82249753"]
   };
 
-  public getRequestConfig() {
+  private buMap = [
+    { bu: "LMFR", buCode: "001" },
+    { bu: "LMIT", buCode: "005" }
+  ];
+
+  public getRequestConfig(): RequestConfig {
     return this.config;
+  }
+
+  public saveRequestConfig(config: RequestConfig): void {
+    this.config = config;
   }
 
   public getServiceLevelKeys() {
     return this.serviceLevelKeys;
+  }
+
+  public getBuMap(): any[] {
+    return this.buMap;
   }
 }
