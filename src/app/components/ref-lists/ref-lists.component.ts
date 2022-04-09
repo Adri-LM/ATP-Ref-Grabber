@@ -11,18 +11,17 @@ export class RefListsComponent {
   data: any;
 
   @Input()
-  serviceLevelKeysMap: any;
+  serviceLevelKeys: any[] = [];
 
   @Input()
   useListMode: boolean = false;
 
-  prettyServiceLevelKeys(serviceLevelKeys: any) {
-    let result = serviceLevelKeys;
+  prettyServiceLevelKey(serviceLevelKey: any) {
+    let result = serviceLevelKey;
 
-    Object.entries(this.serviceLevelKeysMap)
-      .forEach(([k, v]: any) => {
-        result = result.replaceAll(k, v);
-      });
+    this.serviceLevelKeys.forEach((entry: any) => {
+      result = result.replaceAll(entry.key, entry.label);
+    });
 
     return result;
   }

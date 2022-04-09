@@ -5,14 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class ConfigService {
 
-  private serviceLevelKeysMap: any = {
-    HOME_DELIVERY_STD_NO_APPOINTMENT: "LDD",
-    HOME_DELIVERY_EXP_HALF_DAILY_SLOT: "SFS",
-    HOME_DELIVERY_EXP_NO_APPOINTMENT: "LDD Exp.",
-    PICKUP_IN_STORE_EXP_ONE_HOUR: "R&C",
-    PICKUP_IN_STORE_STD_NO_APPOINTMENT: "O&C",
-    RELAY_POINT_DELIVERY_STD_NO_APPOINTMENT: "Relay"
-  };
+  private serviceLevelKeys: any[] = [
+    {key: "HOME_DELIVERY_STD_NO_APPOINTMENT", label: "LDD"},
+    {key: "HOME_DELIVERY_EXP_HALF_DAILY_SLOT", label: "SFS"},
+    {key: "HOME_DELIVERY_EXP_NO_APPOINTMENT", label: "LDD Exp."},
+    {key: "PICKUP_IN_STORE_EXP_ONE_HOUR", label: "R&C"},
+    {key: "PICKUP_IN_STORE_STD_NO_APPOINTMENT", label: "O&C"},
+    {key: "RELAY_POINT_DELIVERY_STD_NO_APPOINTMENT", label: "Relay"}
+  ];
 
   private config: any = {
     bu: "LMFR",
@@ -34,7 +34,7 @@ export class ConfigService {
     return this.config;
   }
 
-  public getServiceLevelKeysMap() {
-    return this.serviceLevelKeysMap;
+  public getServiceLevelKeys() {
+    return this.serviceLevelKeys;
   }
 }

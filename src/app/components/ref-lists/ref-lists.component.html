@@ -1,6 +1,6 @@
 <div *ngIf="useListMode" class="list-container">
   <mat-list class="reference-list custom-scroll-bar" *ngFor="let entry of data | keyvalue">
-    <div class="list-header" mat-subheader>{{ prettyServiceLevelKeys(entry.key) }}</div>
+    <div class="list-header" mat-subheader>{{ prettyServiceLevelKey(entry.key) }}</div>
     <mat-list-item class="list-item" *ngFor="let reference of $any(entry.value)">{{ reference }}</mat-list-item>
   </mat-list>
 </div>
@@ -9,7 +9,7 @@
   <mat-expansion-panel *ngFor="let entry of data | keyvalue">
 
     <mat-expansion-panel-header>
-      <mat-panel-title>{{ prettyServiceLevelKeys(entry.key) }}</mat-panel-title>
+      <mat-panel-title>{{ prettyServiceLevelKey(entry.key) }}</mat-panel-title>
       <mat-panel-description [ngPlural]="$any(entry.value).length">
         {{ $any(entry.value).length }}
         <ng-template ngPluralCase="=1">reference</ng-template>
