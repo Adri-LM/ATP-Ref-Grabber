@@ -18,6 +18,7 @@ app.on('activate', () => {
 
 function createWindow() {
   mainWindow = new BrowserWindow({
+    title: "ATP Ref Grabber",
     width: 1000,
     height: 800,
     webPreferences: {
