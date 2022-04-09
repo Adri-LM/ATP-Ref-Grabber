@@ -1,7 +1,10 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
+const Store = require("electron-store");
 const axios = require("axios");
 
 let mainWindow;
+
+Store.initRenderer()
 
 app.on('ready', createWindow)
 
