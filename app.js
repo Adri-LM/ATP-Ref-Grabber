@@ -21,7 +21,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     title: "ATP Ref Grabber",
     icon: path.join(__dirname, 'src/assets/icon.png'),
-    width: 1000,
+    width: 1200,
     height: 800,
     webPreferences: {
       nodeIntegration: true,
