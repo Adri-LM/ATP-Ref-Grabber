@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { ConfigService } from "../../services/config.service";
 import { clone } from "../../utils/utils";
-import { TableEditDialogComponent } from "../table-edit-dialog/table-edit-dialog.component";
+import { PromptDialogComponent } from "../prompt-dialog/prompt-dialog.component";
 
 @Component({
   selector: 'app-settings-dialog',
@@ -70,16 +70,25 @@ export class SettingsDialogComponent {
     });
   }
 
-  openEditDialog(data: { key: string, label: string }) {
-    const dialog = this.dialog.open(TableEditDialogComponent, { data });
+  openEditDialog(serviceLevel: { key: string, label: string }) {
+    const dialog = this.dialog.open(PromptDialogComponent, {
+      data: {
+        title: "Edit Service Level Label",
+        message: serviceLevel.key,
+        placeholder: "Label",
+        confirmButtonLabel: "Save",
+        cancelButtonLabel: "Cancel",
+        defaultValue: serviceLevel.label
+      }
+    });
 
     dialog.afterClosed()
       .subscribe(result => {
-        if (!result || !result.key || !result.label) return;
+        if (!result) return;
 
         this.dataSource
-          .find((sl: { key: string, label: string }) => sl.key === result.key)
-          .label = result.label;
+          .find((sl: any) => sl.key === serviceLevel.key)
+          .label = result;
       })
   }
 

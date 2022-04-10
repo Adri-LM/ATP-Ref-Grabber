@@ -20,10 +20,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
+import { PromptDialogComponent } from './components/prompt-dialog/prompt-dialog.component';
 import { RefAccordionComponent } from './components/ref-accordion/ref-accordion.component';
 import { RefListsComponent } from './components/ref-lists/ref-lists.component';
 import { SettingsDialogComponent } from './components/settings-dialog/settings-dialog.component';
-import { TableEditDialogComponent } from './components/table-edit-dialog/table-edit-dialog.component';
 import { TextToggleSwitchComponent } from './components/text-toggle-switch/text-toggle-switch.component';
 
 @NgModule({
@@ -32,7 +32,7 @@ import { TextToggleSwitchComponent } from './components/text-toggle-switch/text-
     RefAccordionComponent,
     RefListsComponent,
     SettingsDialogComponent,
-    TableEditDialogComponent,
+    PromptDialogComponent,
     TextToggleSwitchComponent
   ],
   imports: [
