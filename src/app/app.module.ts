@@ -25,6 +25,7 @@ import { RefAccordionComponent } from './components/ref-accordion/ref-accordion.
 import { RefListsComponent } from './components/ref-lists/ref-lists.component';
 import { SettingsDialogComponent } from './components/settings-dialog/settings-dialog.component';
 import { TextToggleSwitchComponent } from './components/text-toggle-switch/text-toggle-switch.component';
+import { YesNoDialogComponent } from "./components/yes-no-dialog/yes-no-dialog.component";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { TextToggleSwitchComponent } from './components/text-toggle-switch/text-
     RefListsComponent,
     SettingsDialogComponent,
     PromptDialogComponent,
-    TextToggleSwitchComponent
+    TextToggleSwitchComponent,
+    YesNoDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -10,25 +10,33 @@ export class PromptDialogComponent {
 
   title: string;
   message: string;
-  placeholder: string;
   confirmButtonLabel: string;
   cancelButtonLabel: string;
 
   inputValue: string;
+
+  inputs: {
+    value: string,
+    placeholder?: string,
+    defaultValue?: string
+  }[];
 
   constructor(public dialogRef: MatDialogRef<PromptDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
 
     this.title = data.title || "Enter value";
     this.message = data.message || "";
-    this.placeholder = data.placeholder || "";
     this.confirmButtonLabel = data.confirmButtonLabel || "Save";
     this.cancelButtonLabel = data.cancelButtonLabel || "Cancel";
 
-    this.inputValue = data.defaultValue || "";
+    this.inputs = (data.inputs || [{ defaultValue: "" }])
+      .map((i: any) => ({
+        value: i.defaultValue,
+        placeholder: i.placeholder
+      }));
   }
 
   confirm() {
-    this.dialogRef.close(this.inputValue)
+    this.dialogRef.close(this.inputs.map(i => i.value));
   }
 }

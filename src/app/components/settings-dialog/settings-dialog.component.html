@@ -59,13 +59,31 @@
       <table class="sl-keys-table mat-elevation-z1" [dataSource]="dataSource" mat-table>
         <ng-container matColumnDef="key">
           <th mat-header-cell *matHeaderCellDef>Service Level Key</th>
-          <td mat-cell *matCellDef="let element">{{ element.key }}</td>
+          <td mat-cell *matCellDef="let element">
+            <span class="sl-key-table-span">{{ element.key }}</span>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="label">
           <th mat-header-cell *matHeaderCellDef>Label</th>
-          <td mat-cell *matCellDef="let element" (click)="openEditDialog(element)">
+          <td mat-cell *matCellDef="let element">
             <span class="label-cell-text">{{ element.label }}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th class="add-item-header" mat-header-cell *matHeaderCellDef>
+            <button mat-icon-button color="primary" (click)="addServiceLevel()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </th>
+          <td class="add-item-cell" mat-cell *matCellDef="let element">
+            <button class="table-btn-action" mat-icon-button color="primary" (click)="editServiceLevel(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button class="table-btn-action" mat-icon-button color="accent" (click)="deleteServiceLevel(element)">
+              <mat-icon>clear</mat-icon>
+            </button>
           </td>
         </ng-container>
 

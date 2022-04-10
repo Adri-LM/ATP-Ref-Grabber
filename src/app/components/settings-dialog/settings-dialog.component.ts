@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dial
 import { ConfigService } from "../../services/config.service";
 import { clone } from "../../utils/utils";
 import { PromptDialogComponent } from "../prompt-dialog/prompt-dialog.component";
+import { YesNoDialogComponent } from "../yes-no-dialog/yes-no-dialog.component";
 
 @Component({
   selector: 'app-settings-dialog',
@@ -14,7 +15,7 @@ export class SettingsDialogComponent {
 
   dataSource: any;
   settingsFormGroup: FormGroup;
-  displayedColumns: string[] = ['key', 'label'];
+  displayedColumns: string[] = ['key', 'label', 'actions'];
   presets: any = {
     FR: {
       bu: 'LMFR',
@@ -70,26 +71,69 @@ export class SettingsDialogComponent {
     });
   }
 
-  openEditDialog(serviceLevel: { key: string, label: string }) {
+  editServiceLevel(serviceLevel: { key: string, label: string }) {
     const dialog = this.dialog.open(PromptDialogComponent, {
       data: {
         title: "Edit Service Level Label",
         message: serviceLevel.key,
-        placeholder: "Label",
         confirmButtonLabel: "Save",
         cancelButtonLabel: "Cancel",
-        defaultValue: serviceLevel.label
+
+        inputs: [{
+          placeholder: "Label",
+          defaultValue: serviceLevel.label
+        }]
       }
     });
 
     dialog.afterClosed()
       .subscribe(result => {
-        if (!result) return;
+        if (!result || !result.filter(Boolean).length) return;
 
         this.dataSource
           .find((sl: any) => sl.key === serviceLevel.key)
-          .label = result;
-      })
+          .label = result[0];
+      });
+  }
+
+  addServiceLevel() {
+    const dialog = this.dialog.open(PromptDialogComponent, {
+      data: {
+        title: "Add Service Level",
+        message: "",
+        confirmButtonLabel: "Save",
+        cancelButtonLabel: "Cancel",
+
+        inputs: [
+          { placeholder: "Key" },
+          { placeholder: "Label" }
+        ]
+      }
+    });
+
+    dialog.afterClosed()
+      .subscribe(result => {
+        if (!result || result.filter(Boolean).length !== 2) return;
+
+        this.dataSource = [
+          ...this.dataSource,
+          { key: result[0], label: result[1] }
+        ];
+      });
+  }
+
+  deleteServiceLevel(sl: { key: string, label: string }) {
+    const dialog = this.dialog.open(YesNoDialogComponent, {
+      data: {
+        message: `Do you really want to delete service level:\n${sl.key}\n${sl.label} ?`
+      }
+    });
+
+    dialog.afterClosed()
+      .subscribe(yesButtonClicked => {
+        if (yesButtonClicked)
+          this.dataSource = this.dataSource.filter((s: any) => s.key !== sl.key);
+      });
   }
 
   saveSettings(): void {

@@ -28,14 +28,29 @@
   flex: 1;
   margin: 4px 7px;
 
-  th.mat-header-cell:last-of-type,
-  td.mat-cell:last-of-type,
-  td.mat-footer-cell:last-of-type {
+  th.mat-header-cell,
+  td.mat-cell {
     padding-left: 24px;
   }
 
-  .label-cell-text {
-    cursor: pointer;
-    text-decoration: underline;
+  .add-item-header,
+  .add-item-cell {
+    padding-right: 5px;
+  }
+
+  .add-item-header {
+    text-align: center;
+  }
+
+  .sl-key-table-span {
+    font-size: 12px;
+    font-style: italic;
+  }
+
+  .table-btn-action {
+
+    mat-icon {
+      font-size: 22px;
+    }
   }
 }
