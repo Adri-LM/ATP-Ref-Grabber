@@ -1,11 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
-const Store = require("electron-store");
 const axios = require("axios");
 const path = require("path");
 
 let mainWindow;
-
-Store.initRenderer()
 
 app.on('ready', createWindow)
 

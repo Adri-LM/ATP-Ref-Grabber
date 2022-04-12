@@ -26,7 +26,6 @@
     "@angular/router": "~13.3.0",
     "axios": "0.26.1",
     "electron-squirrel-startup": "1.0.0",
-    "electron-store": "8.0.1",
     "flag-icons": "6.2.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
