@@ -1,0 +1,6 @@
+**
+!src/
+!package*.json
+!angular.json
+!tsconfig*.json
+!nginx.conf
