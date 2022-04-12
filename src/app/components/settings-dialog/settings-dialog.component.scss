@@ -1,12 +1,14 @@
 .top-container {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-evenly;
+  margin-bottom: 15px;
 }
 
 .middle-container {
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 15px;
 }
 
 .bottom-container {
@@ -14,10 +16,19 @@
   align-items: flex-start;
 }
 
+.preset-buttons-toggle {
+  flex-shrink: 0;
+}
+
 .ref-input {
   height: 100%;
   overflow-y: auto;
   max-height: 350px;
+}
+
+.ref-input,
+.top-container,
+.middle-container {
 
   ::ng-deep .mat-form-field-wrapper {
     padding: 0 !important;
