@@ -1,6 +1,6 @@
 {
   "name": "atp-ref-grabber",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "app.js",
   "author": "ASoft",
   "description": "ATP references grabber",
@@ -14,27 +14,25 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~13.3.0",
-    "@angular/cdk": "13.3.2",
-    "@angular/common": "~13.3.0",
-    "@angular/compiler": "~13.3.0",
-    "@angular/core": "~13.3.0",
-    "@angular/forms": "~13.3.0",
-    "@angular/material": "13.3.2",
-    "@angular/platform-browser": "~13.3.0",
-    "@angular/platform-browser-dynamic": "~13.3.0",
-    "@angular/router": "~13.3.0",
     "axios": "0.26.1",
-    "electron-squirrel-startup": "1.0.0",
-    "flag-icons": "6.2.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.3.1",
+    "@angular/animations": "~13.3.0",
+    "@angular/cdk": "13.3.2",
     "@angular/cli": "~13.3.1",
+    "@angular/common": "~13.3.0",
+    "@angular/compiler": "~13.3.0",
     "@angular/compiler-cli": "~13.3.0",
+    "@angular/core": "~13.3.0",
+    "@angular/forms": "~13.3.0",
+    "@angular/material": "13.3.2",
+    "@angular/platform-browser": "~13.3.0",
+    "@angular/platform-browser-dynamic": "~13.3.0",
+    "@angular/router": "~13.3.0",
     "@electron-forge/cli": "^6.0.0-beta.63",
     "@electron-forge/maker-deb": "^6.0.0-beta.63",
     "@electron-forge/maker-rpm": "^6.0.0-beta.63",
@@ -43,6 +41,8 @@
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "electron": "18.0.1",
+    "electron-squirrel-startup": "1.0.0",
+    "flag-icons": "6.2.0",
     "jasmine-core": "~4.0.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
@@ -54,8 +54,15 @@
   },
   "config": {
     "forge": {
+      "make_targets": {
+        "win32": [
+          "zip",
+          "squirrel"
+        ]
+      },
       "packagerConfig": {
-        "icon": "./src/assets/icon"
+        "icon": "./src/assets/icon",
+        "ignore": "^\\/(?!(dist|node_modules|app\\.js|package\\.json))"
       },
       "makers": [
         {
@@ -65,10 +72,7 @@
           }
         },
         {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
+          "name": "@electron-forge/maker-zip"
         },
         {
           "name": "@electron-forge/maker-deb",
